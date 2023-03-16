@@ -25,7 +25,7 @@ class StoreProductRequest extends BaseRequest
             'sku' => ['required', Rule::unique('products')->whereNull('deleted_at'), 'max: 255'],
             'name' => ['required', 'max:255'],
             'price' => ['required', 'numeric'],
-            'product_attribute' => ['required']
+            'productType' => ['required']
         ];
     }
 

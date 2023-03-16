@@ -7,6 +7,7 @@ use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use App\Shared\Data\ProductObject;
 use App\Shared\Interfaces\CreateProductInterface;
+use App\Shared\Schemas\Product\ProductTypeContext;
 use App\Shared\Util\ProductSave;
 use Illuminate\Http\JsonResponse;
 
@@ -24,9 +25,16 @@ class CreateProductRepository implements CreateProductInterface
     }
     public function createProduct(StoreProductRequest $request): JsonResponse
     {
-        $object = new ProductObject((string)$request->input('sku'),(string)$request->input('name'), (float)$request->input('price'));
+        $object = new ProductObject(
+            (string)$request->input('sku'),
+            (string)$request->input('name'),
+            (float)$request->input('price'),
+            (string)$request->input('productType')
+        );
 
-        $product = $this->productSave->execute($this->product,$object);
+        $productType = new ProductTypeContext($request->input('productType'));
+
+        $product = $this->productSave->execute($this->product,$object,$productType->productType());
 
         return response()->json(new ProductResource($product));
 
