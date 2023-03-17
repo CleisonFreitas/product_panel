@@ -25,7 +25,10 @@ class StoreProductRequest extends BaseRequest
             'sku' => ['required', Rule::unique('products')->whereNull('deleted_at'), 'max: 255'],
             'name' => ['required', 'max:255'],
             'price' => ['required', 'numeric'],
-            'productType' => ['required']
+            'product_type' => ['required', Rule::in(['dvd','book','furniture'])],
+            'product_attribute' => [
+                'size' => ['required_if:product_type,dvd']
+            ]
         ];
     }
 

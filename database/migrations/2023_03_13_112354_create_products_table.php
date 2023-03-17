@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('sku')->unique()->comment('Sku of the product');
             $table->string('name')->comment('Name of the product');
             $table->double('price',10,2)->comment('The price of the product');
-            $table->string('product_attribute')->comment('One of the product-specific attributes and its value');
+            $table->string('product_type')->comment('The product type');
+            $table->json('product_attribute')->comment('One of the product-specific attributes and its value');
             $table->timestamps();
             $table->softDeletes();
         });

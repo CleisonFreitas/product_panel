@@ -5,8 +5,12 @@ class ProductTypeContext
 {
     private ProductTypeMethod $strategy;
 
-    public function __construct(string $productTypeMethod)
+    private array $dados;
+
+    public function __construct(string $productTypeMethod, array $dados)
     {
+        $this->dados = $dados;
+
         $this->strategy = match($productTypeMethod) {
             "dvd" => new DvdStrategy(),
             "book" => new BookStrategy(),
@@ -15,9 +19,9 @@ class ProductTypeContext
         };
     }
 
-    public function productType(): string
+    public function productAttribute(): array
     {
-        return $this->strategy->productType();
+        return $this->strategy->productAttribute($this->dados);
     }
 }
 

@@ -29,12 +29,13 @@ class CreateProductRepository implements CreateProductInterface
             (string)$request->input('sku'),
             (string)$request->input('name'),
             (float)$request->input('price'),
-            (string)$request->input('productType')
+            (string)$request->input('product_type'),
+            (array)$request->input('product_attribute')
         );
 
-        $productType = new ProductTypeContext($request->input('productType'));
+        $productType = new ProductTypeContext($request->input('product_type'),$object->getProductAttribute());
 
-        $product = $this->productSave->execute($this->product,$object,$productType->productType());
+        $product = $this->productSave->execute($this->product,$object,$productType);
 
         return response()->json(new ProductResource($product));
 

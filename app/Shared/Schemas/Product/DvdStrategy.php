@@ -3,9 +3,9 @@ namespace App\Shared\Schemas\Product;
 
 class DvdStrategy implements ProductTypeMethod
 {
-    public function productType(): string
+    public function productAttribute(array $dados): array
     {
-        return (string)'60 MB';
+        return $dados;
     }
 }
 

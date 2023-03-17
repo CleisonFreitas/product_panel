@@ -10,14 +10,15 @@ class ProductSave extends AbstractCreateRecord
     /**
      * @param Product $product
      * @param ProductObject $productObject
+     * @param ProductTypeContext $productAttribute
      */
-    public function execute(Product $product, ProductObject $productObject, string $productType)
+    public function execute(Product $product, ProductObject $productObject, ProductTypeContext $productAttribute)
     {
         $product->sku = $productObject->getSku();
-        $product->name = $productObject->getname();
+        $product->name = $productObject->getName();
         $product->price = $productObject->getPrice();
-        $product->product_attribute = $productType;
-
+        $product->product_type = $productObject->getProductType();
+        $product->product_attribute = $productAttribute->productAttribute();
         return $this->handler($product);
     }
 

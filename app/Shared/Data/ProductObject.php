@@ -16,18 +16,29 @@ class ProductObject
     /** @var string $productType */
     private string $productType;
 
+    /** @var array $productAttribute */
+    private array $productAttribute;
+
     /** ProductObject constructor
      * @param string $sku
      * @param string $name
      * @param float $price
-     * @param string|null $productType
+     * @param string $productType
+     * @param array $productAttribute
      */
-    public function __construct(string $sku ,string $name, float $price, ?string $productType)
+    public function __construct(
+        string $sku,
+        string $name,
+        float $price,
+        string $productType,
+        array $productAttribute
+        )
     {
         $this->sku = $sku;
         $this->name = $name;
         $this->price = $price;
         $this->productType = $productType;
+        $this->productAttribute = $productAttribute;
     }
 
     public function getSku(): string
@@ -48,6 +59,11 @@ class ProductObject
     public function getProductType(): string
     {
         return $this->productType;
+    }
+
+    public function getProductAttribute(): array
+    {
+        return $this->productAttribute;
     }
 }
 

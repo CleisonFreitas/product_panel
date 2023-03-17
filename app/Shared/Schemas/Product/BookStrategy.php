@@ -3,9 +3,9 @@ namespace App\Shared\Schemas\Product;
 
 class BookStrategy implements ProductTypeMethod
 {
-    public function productType(): string
+    public function productAttribute(array $dados): array
     {
-        return '200 paginas';
+        return $dados;
     }
 }
 

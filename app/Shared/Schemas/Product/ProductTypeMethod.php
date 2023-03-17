@@ -3,7 +3,7 @@ namespace App\Shared\Schemas\Product;
 
 interface ProductTypeMethod
 {
-    public function productType(): string;
+    public function productAttribute(array $dados): array;
 }
 
 ?>
